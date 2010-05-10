@@ -1,0 +1,11 @@
+LIBRARY odasl
+EXPORTS
+wplInit=_wplInit@4					@1
+wplExit=_wplExit@0					@2
+wplSetPalette=_wplSetPalette@4				@3
+wplGetSystemMetrics=_wplGetSystemMetrics@4		@4
+wplAdjustWindowRect=_wplAdjustWindowRect@12		@5
+wplLoadResourceBitmap=_wplLoadResourceBitmap@8		@6
+wplManualDialogSubclass=_wplManualDialogSubclass@4	@7
+wplEnable=_wplEnable@0					@8
+wplDisable=_wplDisable@0				@9
