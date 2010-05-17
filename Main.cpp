@@ -1,16 +1,11 @@
-#define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
-#include <windows.h>
 // Include important header files needed to interface with Outpost 2
 #include <Outpost2DLL/Outpost2DLL.h>
 // Include header files to make it easier to build levels
 #include <OP2Helper/OP2Helper.h>
 
-// These are needed for the mission briefing
-#include <richedit.h>
-#include "resource.h"
-#include "odasl\odasl.h"
 
 // Forward declare all functions
+extern void ShowBriefing();
 extern void SetupObjects();
 void SetupAIMines();
 void SetupAIFactories();
@@ -55,30 +50,11 @@ SongIds songs[] = {
     songEP63
 };
 
-// These deal with the briefing screen
-HINSTANCE hInst;
-LRESULT CALLBACK DialogProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
-
-BOOL APIENTRY DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
-{
-	if (fdwReason == DLL_PROCESS_ATTACH)
-	{
-		DisableThreadLibraryCalls(hinstDLL);
-		hInst = hinstDLL; // Must save the DLL's HINSTANCE
-	}
-    return TRUE;
-}
 
 int InitProc()
 {
-    // OP2 turns off the skinning before the game loads.
-    // We have to re-enable it (otherwise the briefing box will look ugly).
-    wplEnable();
-    // Show the dialog box, using the shell window as the parent
-	HWND shellWnd = FindWindow("Outpost2Shell", NULL);
-	DialogBoxParam(hInst, MAKEINTRESOURCE(IDD_MISSIONINFO), shellWnd, (DLGPROC)DialogProc, NULL);
-    // Turn off the skinning again (probably not needed but a good idea to do it anyway)
-    wplDisable();
+	// Show skinned briefing dialog box
+	ShowBriefing();
 
 	TethysGame::ForceMoraleGood(0);
 	TethysGame::ForceMoraleGood(1);
@@ -606,45 +582,3 @@ void SetupAIDefense()
     saveData.aiDefGrp[6].SetTargCount(mapLynx, mapMicrowave, 3);
     saveData.aiDefGrp[6].SetRect(MAP_RECT(75+31, 1-1, 98+31, 16-1));
 }
-
-LRESULT CALLBACK DialogProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
-{
-    HRSRC txtRes = NULL;
-    HWND richEdit = NULL;
-	switch(msg)
-	{
-		case WM_INITDIALOG:
-            // Make the BG black in the rich edit box
-            richEdit = GetDlgItem(hWnd, IDC_TEXTAREA);
-            SendMessage(richEdit, EM_SETBKGNDCOLOR, 0, 0);
-
-            // Find the text resource
-            txtRes = FindResource(hInst, MAKEINTRESOURCE(IDR_MISSIONTEXT), "TEXT");
-            if (txtRes)
-            {
-                // Load it
-                HGLOBAL resHdl = LoadResource(hInst, txtRes);
-                if (resHdl)
-                {
-                    // Lock it and set the text
-                    char *briefing = (char*)LockResource(resHdl);
-                    if (briefing)
-                    {
-                        SetDlgItemText(hWnd, IDC_TEXTAREA, briefing);
-                        return TRUE;
-                    }
-                }
-            }
-            SetDlgItemText(hWnd, IDC_TEXTAREA, "Error: Mission text could not be loaded.");
-            return TRUE;
-        case WM_COMMAND:
-            if (wParam == IDOK)
-            {
-                EndDialog(hWnd, IDOK);
-                return TRUE;
-            }
-            return FALSE;
-	}
-	return FALSE;
-}
-
