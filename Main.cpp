@@ -139,7 +139,7 @@ int InitProc()
     // Start the offensive AI groups going
     saveData.aiMassGrp = CreateFightGroup(Player[1]);
     saveData.aiMassGrp.SetRect(MAP_RECT(70+31, 15-1, 95+31, 50-1));
-    saveData.aiBuildGrp.RecordVehReinforceGroup(saveData.aiMassGrp, 3 - saveData.diffMultiplier * 15 / 10);
+    saveData.aiBuildGrp.RecordVehReinforceGroup(saveData.aiMassGrp, 3 - saveData.diffMultiplier * 15 / 100);
     saveData.aiMassGrp.SetTargCount(mapLynx, mapMicrowave, 1); // Set a modest one to start
 
     saveData.aiAttackGrp = CreateFightGroup(Player[1]);
@@ -199,12 +199,12 @@ SCRIPT_API void __cdecl AIStateChange()
     }
 
     // Adjust what types of units to make based on the player's military strength
-    if (Player[0].GetTotalPlayerStrength() >= 20 * saveData.diffMultiplier)
+    if (Player[0].GetTotalPlayerStrength() >= 20 * saveData.diffMultiplier / 10)
     {
     	saveData.useTigers = true;
     	saveData.aiCount = 0;
     }
-    else if (Player[0].GetTotalPlayerStrength() >= 10 * saveData.diffMultiplier)
+    else if (Player[0].GetTotalPlayerStrength() >= 10 * saveData.diffMultiplier / 10)
     {
     	saveData.usePanthers = true;
     	saveData.aiCount = 0;
@@ -214,32 +214,32 @@ SCRIPT_API void __cdecl AIStateChange()
     curType = (saveData.useTigers ? mapTiger : (saveData.usePanthers ? mapPanther : mapLynx));
 
     // Check the count and increase the AI strength as needed
-    if (saveData.aiCount == 10 * saveData.diffMultiplier)
+    if (saveData.aiCount == 10 * saveData.diffMultiplier / 10)
     {
         // Starflare time
         saveData.aiMassGrp.SetTargCount(curType, mapStarflare, 3 - saveData.diffMultiplier * 15 / 10);
     }
-    else if (saveData.aiCount == 20 * saveData.diffMultiplier)
+    else if (saveData.aiCount == 20 * saveData.diffMultiplier / 10)
     {
         // Stickyfoam time
         saveData.aiMassGrp.SetTargCount(curType, mapStickyfoam, 3 - saveData.diffMultiplier * 15 / 10);
     }
-    else if (saveData.aiCount == 30 * saveData.diffMultiplier)
+    else if (saveData.aiCount == 30 * saveData.diffMultiplier / 10)
     {
         // EMP time
         saveData.aiMassGrp.SetTargCount(curType, mapEMP, 3 - saveData.diffMultiplier * 15 / 10);
     }
-    else if (saveData.aiCount == 45 * saveData.diffMultiplier)
+    else if (saveData.aiCount == 45 * saveData.diffMultiplier / 10)
     {
         // RPG time
         saveData.aiMassGrp.SetTargCount(curType, mapRPG, 3 - saveData.diffMultiplier * 15 / 10);
     }
-    else if (saveData.aiCount == 70 * saveData.diffMultiplier)
+    else if (saveData.aiCount == 70 * saveData.diffMultiplier / 10)
     {
         // ESG time
         saveData.aiMassGrp.SetTargCount(curType, mapESG, 3 - saveData.diffMultiplier * 15 / 10);
     }
-    else if (saveData.aiCount == 75 * saveData.diffMultiplier)
+    else if (saveData.aiCount == 75 * saveData.diffMultiplier / 10)
     {
         // Nova time
         saveData.aiMassGrp.SetTargCount(curType, mapSupernova, 3 - saveData.diffMultiplier * 15 / 10);
@@ -289,22 +289,22 @@ SCRIPT_API void __cdecl Disasters()
 
 	int randNum = TethysGame::GetRand(100);
 
-	if (20*saveData.diffMultiplier <= randNum && randNum < 70*saveData.diffMultiplier)
+	if (20*saveData.diffMultiplier / 10 <= randNum && randNum < 70*saveData.diffMultiplier / 10)
 	{
 		// Meteor
 		TethysGame::SetMeteor(TethysGame::GetRand(112)+31, TethysGame::GetRand(127)-1, TethysGame::GetRand(5-(5*saveData.diffMultiplier/10))+1);
 	}
-	else if (70*saveData.diffMultiplier <= randNum && randNum < 85*saveData.diffMultiplier)
+	else if (70*saveData.diffMultiplier / 10 <= randNum && randNum < 85*saveData.diffMultiplier / 10)
 	{
 		// Quake
 		TethysGame::SetEarthquake(TethysGame::GetRand(112)+31, TethysGame::GetRand(127)-1, TethysGame::GetRand(3-(3*saveData.diffMultiplier/10))+1);
 	}
-	else if (85*saveData.diffMultiplier <= randNum && randNum < 95*saveData.diffMultiplier)
+	else if (85*saveData.diffMultiplier / 10 <= randNum && randNum < 95*saveData.diffMultiplier / 10)
 	{
 		// Lightning
 		TethysGame::SetLightning(TethysGame::GetRand(112)+31, TethysGame::GetRand(127)-1, TethysGame::GetRand(20-saveData.diffMultiplier)+5, TethysGame::GetRand(112)+31, TethysGame::GetRand(127)-1);
 	}
-	else if (95*saveData.diffMultiplier <= randNum)
+	else if (95*saveData.diffMultiplier / 10 <= randNum)
 	{
 		// Tornado
 		TethysGame::SetTornado(TethysGame::GetRand(112)+31, TethysGame::GetRand(127)-1, TethysGame::GetRand(20-saveData.diffMultiplier)+5, TethysGame::GetRand(112)+31, TethysGame::GetRand(127)-1, 1);
