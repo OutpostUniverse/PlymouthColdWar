@@ -11,10 +11,7 @@ void SetupAIMines();
 void SetupAIFactories();
 void SetupAIDefense();
 
-char MapName[]			= "eden03.map";							// The .map file used for this level
-char LevelDesc[]		= "Plymouth Cold War";					// Description appearing in the game list box
-char TechtreeName[]		= "MULTITEK.TXT";						// File to use for the tech tree
-SDescBlock DescBlock	= { Colony, 2, 12, 0 }; 				// Important level details
+ExportLevelDetails("Plymouth Cold War", "eden03.map", "MULTITEK.TXT", Colony, 2);
 
 // We must save all triggers and groups. The game does not call InitProc when the game is loaded.
 // This way, we can recreate all the triggers/groups.
@@ -51,7 +48,7 @@ SongIds songs[] = {
 };
 
 
-int InitProc()
+Export int InitProc()
 {
 	// Show skinned briefing dialog box
 	ShowBriefing();
@@ -163,29 +160,22 @@ int InitProc()
 	return 1; // return 1 if OK; 0 on failure
 }
 
-void AIProc()
+Export void AIProc()
 {
 }
 
-void __cdecl GetSaveRegions(struct BufferDesc &bufDesc)
-{
-    // Note: this has been changed. The count must be persisted in the saved game file,
-    // so that the AI is in the right state when the game is reloaded.
+ExportSaveLoadData(saveData);
 
-	bufDesc.bufferStart = &saveData;     // Pointer to a buffer that needs to be saved
-	bufDesc.length = sizeof(saveData);	// sizeof(buffer)
-}
-
-int StatusProc()
+Export int StatusProc()
 {
 	return 0; // must return 0
 }
 
-SCRIPT_API void NoResponseToTrigger()
+Export void NoResponseToTrigger()
 {
 }
 
-SCRIPT_API void __cdecl AIStateChange()
+Export void __cdecl AIStateChange()
 {
 	map_id curType;
     // Increment a counter
@@ -246,7 +236,7 @@ SCRIPT_API void __cdecl AIStateChange()
     }
 }
 
-SCRIPT_API void __cdecl InitialReinforce()
+Export void __cdecl InitialReinforce()
 {
 	// Give the player some stuff to expand their base with
 	Unit u;
@@ -276,7 +266,7 @@ SCRIPT_API void __cdecl InitialReinforce()
 	TethysGame::AddMessage(u, "Reinforcements have arrived", 0, sndSavnt205);
 }
 
-SCRIPT_API void __cdecl Disasters()
+Export void __cdecl Disasters()
 {
 	// Set a disaster. This uses a weighted random. Picking a random number 0 to 100:
 	// 0-19 = no action
