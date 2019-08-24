@@ -2,10 +2,8 @@
 // at 11/25/2005 6:36:11 PM
 // using template C:\Program Files\OP2Mapper\Default.tpl
 // Total Number of Objects: 123
-//#define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
-//#include <windows.h>
 
-#include <Outpost2DLL/Outpost2DLL.h>
+#include "Outpost2DLL/Outpost2DLL.h"
 
 void SetupObjects()
 {
@@ -92,6 +90,4 @@ void SetupObjects()
     TethysGame::CreateUnit(x, (map_id)23, LOCATION(118+31, 36-1), 1, (map_id)70, 0);
     TethysGame::CreateUnit(x, (map_id)23, LOCATION(106+31, 27-1), 1, (map_id)71, 0);
     TethysGame::CreateUnit(x, (map_id)23, LOCATION(98+31, 43-1), 1, (map_id)64, 0);
-
-
 }

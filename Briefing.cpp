@@ -1,10 +1,9 @@
-#define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
-#include <windows.h>
-
-// These are needed for the mission briefing
-#include <richedit.h>
 #include "resource.h"
 #include "odasl\odasl.h"
+#include <richedit.h>
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+
 
 // These deal with the briefing screen
 extern HINSTANCE hInst;
@@ -63,4 +62,3 @@ LRESULT CALLBACK DialogProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	}
 	return FALSE;
 }
-

@@ -1,7 +1,7 @@
 // Include important header files needed to interface with Outpost 2
-#include <Outpost2DLL/Outpost2DLL.h>
+#include "Outpost2DLL/Outpost2DLL.h"
 // Include header files to make it easier to build levels
-#include <OP2Helper/OP2Helper.h>
+#include "OP2Helper/OP2Helper.h"
 
 
 // Forward declare all functions
@@ -11,10 +11,7 @@ void SetupAIMines();
 void SetupAIFactories();
 void SetupAIDefense();
 
-char MapName[]			= "eden03.map";							// The .map file used for this level
-char LevelDesc[]		= "Plymouth Cold War";					// Description appearing in the game list box
-char TechtreeName[]		= "MULTITEK.TXT";						// File to use for the tech tree
-SDescBlock DescBlock	= { Colony, 2, 12, 0 }; 				// Important level details
+ExportLevelDetails("Plymouth Cold War", "eden03.map", "MULTITEK.TXT", Colony, 2);
 
 // We must save all triggers and groups. The game does not call InitProc when the game is loaded.
 // This way, we can recreate all the triggers/groups.
@@ -51,7 +48,7 @@ SongIds songs[] = {
 };
 
 
-int InitProc()
+Export int InitProc()
 {
 	// Show skinned briefing dialog box
 	ShowBriefing();
@@ -64,6 +61,7 @@ int InitProc()
 	Player[0].MarkResearchComplete(techResearchTrainingPrograms);
 	Player[0].MarkResearchComplete(techOffspringEnhancement);
 	Player[0].MarkResearchComplete(techCyberneticTeleoperation);
+	Player[0].CenterViewOn(38 + X_, 45 + Y_);
 
     if (Player[0].Difficulty() < 2)
     {
@@ -115,12 +113,14 @@ int InitProc()
 	// Turn on vehicle lights
 	PlayerVehicleEnum vehEnum(0);
 	Unit veh;
-	while (vehEnum.GetNext(veh))
-        veh.DoSetLights(1);
+	while (vehEnum.GetNext(veh)) {
+		veh.DoSetLights(1);
+	}
 
     vehEnum = PlayerVehicleEnum(1);
-	while (vehEnum.GetNext(veh))
-        veh.DoSetLights(1);
+	while (vehEnum.GetNext(veh)) {
+		veh.DoSetLights(1);
+	}
 
 	// Map lighting settings
 	TethysGame::SetDaylightMoves(1);
@@ -163,29 +163,22 @@ int InitProc()
 	return 1; // return 1 if OK; 0 on failure
 }
 
-void AIProc()
+Export void AIProc()
 {
 }
 
-void __cdecl GetSaveRegions(struct BufferDesc &bufDesc)
-{
-    // Note: this has been changed. The count must be persisted in the saved game file,
-    // so that the AI is in the right state when the game is reloaded.
+ExportSaveLoadData(saveData);
 
-	bufDesc.bufferStart = &saveData;     // Pointer to a buffer that needs to be saved
-	bufDesc.length = sizeof(saveData);	// sizeof(buffer)
-}
-
-int StatusProc()
+Export int StatusProc()
 {
 	return 0; // must return 0
 }
 
-SCRIPT_API void NoResponseToTrigger()
+Export void NoResponseToTrigger()
 {
 }
 
-SCRIPT_API void __cdecl AIStateChange()
+Export void __cdecl AIStateChange()
 {
 	map_id curType;
     // Increment a counter
@@ -246,37 +239,38 @@ SCRIPT_API void __cdecl AIStateChange()
     }
 }
 
-SCRIPT_API void __cdecl InitialReinforce()
+Export void __cdecl InitialReinforce()
 {
 	// Give the player some stuff to expand their base with
-	Unit u;
-	TethysGame::CreateUnit(u, mapConVec, LOCATION(0+31, 44-1), 0, mapStructureFactory, 0);
-	u.DoSetLights(1);
-	u.DoMove(LOCATION(34+31, 34-1));
+	Unit unit;
+	TethysGame::CreateUnit(unit, mapConVec, LOCATION(0+31, 44-1), 0, mapStructureFactory, 0);
+	unit.DoSetLights(1);
+	unit.DoMove(LOCATION(34+31, 34-1));
 
     if (Player[0].Difficulty() < 2)
     {
-        TethysGame::CreateUnit(u, mapEarthworker, LOCATION(0+31, 45-1), 0, mapNone, 0);
-        u.DoSetLights(1);
-        u.DoMove(LOCATION(36+31, 34-1));
+        TethysGame::CreateUnit(unit, mapEarthworker, LOCATION(0+31, 45-1), 0, mapNone, 0);
+        unit.DoSetLights(1);
+        unit.DoMove(LOCATION(36+31, 34-1));
         if (Player[0].Difficulty() < 1)
         {
-            TethysGame::CreateUnit(u, mapConVec, LOCATION(0+31, 46-1), 0, mapStandardLab, 0);
-            u.DoSetLights(1);
-            u.DoMove(LOCATION(35+31, 34-1));
+            TethysGame::CreateUnit(unit, mapConVec, LOCATION(0+31, 46-1), 0, mapStandardLab, 0);
+            unit.DoSetLights(1);
+            unit.DoMove(LOCATION(35+31, 34-1));
         }
     }
-	if (Player[0].Difficulty() > 0) // unless the player has it on easy mode let the colonists revolt ;P
-        TethysGame::FreeMoraleLevel(0);
+	if (Player[0].Difficulty() > 0) { // unless the player has it on easy mode let the colonists revolt ;P
+		TethysGame::FreeMoraleLevel(0);
+	}
 
     // Start the attacks faster
     saveData.aiStateTrig.Destroy();
     saveData.aiStateTrig = CreateTimeTrigger(1, 0, 800 * saveData.diffMultiplier / 10, 1400 * saveData.diffMultiplier / 10, "AIStateChange");
 
-	TethysGame::AddMessage(u, "Reinforcements have arrived", 0, sndSavnt205);
+	TethysGame::AddMessage(unit, "Reinforcements have arrived", 0, sndSavnt205);
 }
 
-SCRIPT_API void __cdecl Disasters()
+Export void __cdecl Disasters()
 {
 	// Set a disaster. This uses a weighted random. Picking a random number 0 to 100:
 	// 0-19 = no action

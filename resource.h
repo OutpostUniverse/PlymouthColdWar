@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Developer Studio generated include file.
-// Used by OP2Script.rc
+// Used by PlymouthColdWar.rc
 //
 #define IDR_MISSIONTEXT                 102
 #define IDB_PIC                         104
