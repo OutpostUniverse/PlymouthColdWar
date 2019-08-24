@@ -61,6 +61,7 @@ Export int InitProc()
 	Player[0].MarkResearchComplete(techResearchTrainingPrograms);
 	Player[0].MarkResearchComplete(techOffspringEnhancement);
 	Player[0].MarkResearchComplete(techCyberneticTeleoperation);
+	Player[0].CenterViewOn(38 + X_, 45 + Y_);
 
     if (Player[0].Difficulty() < 2)
     {
