@@ -12,7 +12,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CB7579F0-281E-4E06-BBC9-76F35D61A1D7}</ProjectGuid>
-    <RootNamespace>OP2Script</RootNamespace>
+    <RootNamespace>PlymouthColdWar</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -110,7 +110,7 @@
     <None Include="ReadMe.md" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="OP2Script.rc" />
+    <ResourceCompile Include="PlymouthColdWar.rc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
