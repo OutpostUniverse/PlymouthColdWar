@@ -112,12 +112,14 @@ Export int InitProc()
 	// Turn on vehicle lights
 	PlayerVehicleEnum vehEnum(0);
 	Unit veh;
-	while (vehEnum.GetNext(veh))
-        veh.DoSetLights(1);
+	while (vehEnum.GetNext(veh)) {
+		veh.DoSetLights(1);
+	}
 
     vehEnum = PlayerVehicleEnum(1);
-	while (vehEnum.GetNext(veh))
-        veh.DoSetLights(1);
+	while (vehEnum.GetNext(veh)) {
+		veh.DoSetLights(1);
+	}
 
 	// Map lighting settings
 	TethysGame::SetDaylightMoves(1);
@@ -256,8 +258,9 @@ Export void __cdecl InitialReinforce()
             u.DoMove(LOCATION(35+31, 34-1));
         }
     }
-	if (Player[0].Difficulty() > 0) // unless the player has it on easy mode let the colonists revolt ;P
-        TethysGame::FreeMoraleLevel(0);
+	if (Player[0].Difficulty() > 0) { // unless the player has it on easy mode let the colonists revolt ;P
+		TethysGame::FreeMoraleLevel(0);
+	}
 
     // Start the attacks faster
     saveData.aiStateTrig.Destroy();
