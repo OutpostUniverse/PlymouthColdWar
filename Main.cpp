@@ -241,21 +241,21 @@ Export void __cdecl AIStateChange()
 Export void __cdecl InitialReinforce()
 {
 	// Give the player some stuff to expand their base with
-	Unit u;
-	TethysGame::CreateUnit(u, mapConVec, LOCATION(0+31, 44-1), 0, mapStructureFactory, 0);
-	u.DoSetLights(1);
-	u.DoMove(LOCATION(34+31, 34-1));
+	Unit unit;
+	TethysGame::CreateUnit(unit, mapConVec, LOCATION(0+31, 44-1), 0, mapStructureFactory, 0);
+	unit.DoSetLights(1);
+	unit.DoMove(LOCATION(34+31, 34-1));
 
     if (Player[0].Difficulty() < 2)
     {
-        TethysGame::CreateUnit(u, mapEarthworker, LOCATION(0+31, 45-1), 0, mapNone, 0);
-        u.DoSetLights(1);
-        u.DoMove(LOCATION(36+31, 34-1));
+        TethysGame::CreateUnit(unit, mapEarthworker, LOCATION(0+31, 45-1), 0, mapNone, 0);
+        unit.DoSetLights(1);
+        unit.DoMove(LOCATION(36+31, 34-1));
         if (Player[0].Difficulty() < 1)
         {
-            TethysGame::CreateUnit(u, mapConVec, LOCATION(0+31, 46-1), 0, mapStandardLab, 0);
-            u.DoSetLights(1);
-            u.DoMove(LOCATION(35+31, 34-1));
+            TethysGame::CreateUnit(unit, mapConVec, LOCATION(0+31, 46-1), 0, mapStandardLab, 0);
+            unit.DoSetLights(1);
+            unit.DoMove(LOCATION(35+31, 34-1));
         }
     }
 	if (Player[0].Difficulty() > 0) { // unless the player has it on easy mode let the colonists revolt ;P
@@ -266,7 +266,7 @@ Export void __cdecl InitialReinforce()
     saveData.aiStateTrig.Destroy();
     saveData.aiStateTrig = CreateTimeTrigger(1, 0, 800 * saveData.diffMultiplier / 10, 1400 * saveData.diffMultiplier / 10, "AIStateChange");
 
-	TethysGame::AddMessage(u, "Reinforcements have arrived", 0, sndSavnt205);
+	TethysGame::AddMessage(unit, "Reinforcements have arrived", 0, sndSavnt205);
 }
 
 Export void __cdecl Disasters()
