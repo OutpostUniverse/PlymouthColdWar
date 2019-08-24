@@ -1,7 +1,7 @@
 // Include important header files needed to interface with Outpost 2
-#include <Outpost2DLL/Outpost2DLL.h>
+#include "Outpost2DLL/Outpost2DLL.h"
 // Include header files to make it easier to build levels
-#include <OP2Helper/OP2Helper.h>
+#include "OP2Helper/OP2Helper.h"
 
 
 // Forward declare all functions
