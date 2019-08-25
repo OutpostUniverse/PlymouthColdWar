@@ -57,7 +57,7 @@
       <BaseAddress>0x11000000</BaseAddress>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalDependencies>odasl/odasl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OP2MissionSDK/odasl/odasl.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>if defined Outpost2Path (xcopy /y /d "$(TargetPath)" "$(Outpost2Path)\") else (echo Outpost2Path environment variable not defined. Skipping Post Build Copy.)</Command>
@@ -82,7 +82,7 @@
       <BaseAddress>0x11000000</BaseAddress>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalDependencies>odasl/odasl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OP2MissionSDK/odasl/odasl.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>if defined Outpost2Path (xcopy /y /d "$(TargetPath)" "$(Outpost2Path)\") else (echo Outpost2Path environment variable not defined. Skipping Post Build Copy.)</Command>

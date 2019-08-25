@@ -169,16 +169,11 @@ Export void AIProc()
 
 ExportSaveLoadData(saveData);
 
-Export int StatusProc()
-{
-	return 0; // must return 0
-}
-
 Export void NoResponseToTrigger()
 {
 }
 
-Export void __cdecl AIStateChange()
+Export void AIStateChange()
 {
 	map_id curType;
     // Increment a counter
@@ -239,7 +234,7 @@ Export void __cdecl AIStateChange()
     }
 }
 
-Export void __cdecl InitialReinforce()
+Export void InitialReinforce()
 {
 	// Give the player some stuff to expand their base with
 	Unit unit;
@@ -270,7 +265,7 @@ Export void __cdecl InitialReinforce()
 	TethysGame::AddMessage(unit, "Reinforcements have arrived", 0, sndSavnt205);
 }
 
-Export void __cdecl Disasters()
+Export void Disasters()
 {
 	// Set a disaster. This uses a weighted random. Picking a random number 0 to 100:
 	// 0-19 = no action
