@@ -169,11 +169,6 @@ Export void AIProc()
 
 ExportSaveLoadData(saveData);
 
-Export int StatusProc()
-{
-	return 0; // must return 0
-}
-
 Export void NoResponseToTrigger()
 {
 }
