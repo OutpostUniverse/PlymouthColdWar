@@ -102,13 +102,13 @@ Export int InitProc()
     SetupAIDefense();
 
     // Set reinforce info
-    saveData.aiBuildGrp.RecordVehReinforceGroup(saveData.aiDefGrp[0], 0);
+    saveData.aiBuildGrp.RecordVehReinforceGroup(saveData.aiDefGrp[0], 1);
     saveData.aiBuildGrp.RecordVehReinforceGroup(saveData.aiDefGrp[1], 5000); // Very high priority; it's the lab
     saveData.aiBuildGrp.RecordVehReinforceGroup(saveData.aiDefGrp[2], 5000); // Also high; the CC
     saveData.aiBuildGrp.RecordVehReinforceGroup(saveData.aiDefGrp[3], 5000); // Factories
-    saveData.aiBuildGrp.RecordVehReinforceGroup(saveData.aiDefGrp[4], 0);
-    saveData.aiBuildGrp.RecordVehReinforceGroup(saveData.aiDefGrp[5], 0);
-    saveData.aiBuildGrp.RecordVehReinforceGroup(saveData.aiDefGrp[6], 0);
+    saveData.aiBuildGrp.RecordVehReinforceGroup(saveData.aiDefGrp[4], 1);
+    saveData.aiBuildGrp.RecordVehReinforceGroup(saveData.aiDefGrp[5], 1);
+    saveData.aiBuildGrp.RecordVehReinforceGroup(saveData.aiDefGrp[6], 1);
 
 	// Turn on vehicle lights
 	PlayerVehicleEnum vehEnum(0);
