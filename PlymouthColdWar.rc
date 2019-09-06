@@ -1,4 +1,4 @@
-//Microsoft Developer Studio generated resource script.
+// Microsoft Visual C++ generated resource script.
 //
 #include "resource.h"
 
@@ -13,28 +13,24 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// English (U.S.) resources
+// English (United States) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
-#ifdef _WIN32
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Dialog
 //
 
-IDD_MISSIONINFO DIALOG DISCARDABLE  0, 0, 282, 250
-STYLE DS_MODALFRAME | DS_SETFOREGROUND | DS_3DLOOK | DS_CENTER | WS_POPUP | 
-    WS_VISIBLE | WS_CAPTION
+IDD_MISSIONINFO DIALOG 0, 0, 282, 250
+STYLE DS_SETFONT | DS_MODALFRAME | DS_SETFOREGROUND | DS_3DLOOK | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION
 CAPTION "MISSION INFO"
 FONT 8, "MS Sans Serif"
 BEGIN
     DEFPUSHBUTTON   "&CONTINUE",IDOK,75,230,130,15
-    CONTROL         "",IDC_TEXTAREA,"RICHEDIT",ES_MULTILINE | ES_AUTOVSCROLL | 
-                    ES_READONLY | WS_BORDER | WS_TABSTOP,5,5,270,220
+    CONTROL         "",IDC_TEXTAREA,"RICHEDIT",TCS_HOTTRACK | TCS_RAGGEDRIGHT | TCS_MULTISELECT | WS_BORDER | WS_TABSTOP,5,5,270,220
 END
 
 
@@ -44,7 +40,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO DISCARDABLE 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_MISSIONINFO, DIALOG
     BEGIN
@@ -63,18 +59,18 @@ END
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE DISCARDABLE 
+1 TEXTINCLUDE 
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE DISCARDABLE 
+2 TEXTINCLUDE 
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE DISCARDABLE 
+3 TEXTINCLUDE 
 BEGIN
     "\r\n"
     "\0"
@@ -88,8 +84,48 @@ END
 // TEXT
 //
 
-IDR_MISSIONTEXT         TEXT    DISCARDABLE     "briefing.rtf"
-#endif    // English (U.S.) resources
+IDR_MISSIONTEXT         TEXT                    "briefing.rtf"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,1,0
+ PRODUCTVERSION 1,0,1,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "The Outpost Universe"
+            VALUE "FileDescription", "Colony Game Plymouth Cold War"
+            VALUE "FileVersion", "1.0.1.0"
+            VALUE "InternalName", "cerbas.dll"
+            VALUE "LegalCopyright", "Copyright (C) 2019"
+            VALUE "OriginalFilename", "cerbas.dll"
+            VALUE "ProductName", "Outpost 2"
+            VALUE "ProductVersion", "1.3.0.9"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
