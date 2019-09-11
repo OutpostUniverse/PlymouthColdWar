@@ -434,6 +434,14 @@ void SetupAIFactories()
     saveData.aiBuildGrp.RecordBuilding(LOCATION(118+31, 36-1), mapGuardPost, mapESG);
     saveData.aiBuildGrp.RecordBuilding(LOCATION(106+31, 27-1), mapGuardPost, mapStickyfoam);
     saveData.aiBuildGrp.RecordBuilding(LOCATION(98+31, 43-1), mapGuardPost, mapRPG);
+
+	saveData.aiBuildGrp.RecordBuilding(LOCATION(92 + 31, 53 - 1), mapCommonOreMine, mapNone);
+	saveData.aiBuildGrp.RecordBuilding(LOCATION(87 + 31, 31 - 1), mapCommonOreMine, mapNone);
+	saveData.aiBuildGrp.RecordBuilding(LOCATION(99 + 31, 19 - 1), mapRareOreMine, mapNone);
+
+	saveData.aiBuildGrp.RecordBuilding(LOCATION(107 + 31, 43 - 1), mapCommonOreSmelter, mapNone);
+	saveData.aiBuildGrp.RecordBuilding(LOCATION(107 + 31, 39 - 1), mapCommonOreSmelter, mapNone);
+	saveData.aiBuildGrp.RecordBuilding(LOCATION(110 + 31, 26 - 1), mapRareOreSmelter, mapNone);
 }
 
 void SetupAIDefense()
