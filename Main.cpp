@@ -421,19 +421,19 @@ void SetupAIFactories()
 	saveData.aiBuildGrp.RecordTube(LOCATION(110+31, 30-1));
 	saveData.aiBuildGrp.RecordTube(LOCATION(110+31, 31-1));
 	saveData.aiBuildGrp.RecordTube(LOCATION(115+31, 48-1));
-	saveData.aiBuildGrp.RecordBuilding(LOCATION(87+31, 59-1), (map_id)58, (map_id)0);
-    saveData.aiBuildGrp.RecordBuilding(LOCATION(91+31, 59-1), (map_id)58, (map_id)0);
-    saveData.aiBuildGrp.RecordBuilding(LOCATION(87+31, 4-1), (map_id)58, (map_id)0);
-    saveData.aiBuildGrp.RecordBuilding(LOCATION(83+31, 4-1), (map_id)58, (map_id)0);
-    saveData.aiBuildGrp.RecordBuilding(LOCATION(91+31, 4-1), (map_id)58, (map_id)0);
-    saveData.aiBuildGrp.RecordBuilding(LOCATION(124+31, 60-1), (map_id)28, (map_id)0);
-    saveData.aiBuildGrp.RecordBuilding(LOCATION(124+31, 57-1), (map_id)39, (map_id)0);
-    saveData.aiBuildGrp.RecordBuilding(LOCATION(125+31, 34-1), (map_id)49, (map_id)0);
-    saveData.aiBuildGrp.RecordBuilding(LOCATION(125+31, 39-1), (map_id)50, (map_id)0);
-    saveData.aiBuildGrp.RecordBuilding(LOCATION(117+31, 31-1), (map_id)23, (map_id)71);
-    saveData.aiBuildGrp.RecordBuilding(LOCATION(118+31, 36-1), (map_id)23, (map_id)70);
-    saveData.aiBuildGrp.RecordBuilding(LOCATION(106+31, 27-1), (map_id)23, (map_id)71);
-    saveData.aiBuildGrp.RecordBuilding(LOCATION(98+31, 43-1), (map_id)23, (map_id)64);
+	saveData.aiBuildGrp.RecordBuilding(LOCATION(87+31, 59-1), mapTokamak, mapNone);
+    saveData.aiBuildGrp.RecordBuilding(LOCATION(91+31, 59-1), mapTokamak, mapNone);
+    saveData.aiBuildGrp.RecordBuilding(LOCATION(87+31, 4-1), mapTokamak, mapNone);
+    saveData.aiBuildGrp.RecordBuilding(LOCATION(83+31, 4-1), mapTokamak, mapNone);
+    saveData.aiBuildGrp.RecordBuilding(LOCATION(91+31, 4-1), mapTokamak, mapNone);
+    saveData.aiBuildGrp.RecordBuilding(LOCATION(124+31, 60-1), mapCommandCenter, mapNone);
+    saveData.aiBuildGrp.RecordBuilding(LOCATION(124+31, 57-1), mapAgridome, mapNone);
+    saveData.aiBuildGrp.RecordBuilding(LOCATION(125+31, 34-1), mapStandardLab, mapNone);
+    saveData.aiBuildGrp.RecordBuilding(LOCATION(125+31, 39-1), mapAdvancedLab, mapNone);
+    saveData.aiBuildGrp.RecordBuilding(LOCATION(117+31, 31-1), mapGuardPost, mapStickyfoam);
+    saveData.aiBuildGrp.RecordBuilding(LOCATION(118+31, 36-1), mapGuardPost, mapESG);
+    saveData.aiBuildGrp.RecordBuilding(LOCATION(106+31, 27-1), mapGuardPost, mapStickyfoam);
+    saveData.aiBuildGrp.RecordBuilding(LOCATION(98+31, 43-1), mapGuardPost, mapRPG);
 }
 
 void SetupAIDefense()
