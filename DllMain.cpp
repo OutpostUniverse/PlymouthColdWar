@@ -12,5 +12,5 @@ BOOL APIENTRY DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 		DisableThreadLibraryCalls(hinstDLL);
 		hInst = hinstDLL; // Must save the DLL's HINSTANCE
 	}
-    return TRUE;
+	return TRUE;
 }
