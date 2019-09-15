@@ -9,6 +9,9 @@ Custom single player, colony game for Outpost 2. Last One Standing type scenario
 
 **Change Log**
 
+Version 1.0.2
+ - Allow AI to rebuild destroyed smelters and mines.
+
 Version 1.0.1
  - Fix program hang when AI attempts to replenish 2nd from northern combat group.
  - Center starting view on player's base instead of top left of screen
