@@ -195,12 +195,12 @@ void SetStartingResearch()
 	Player[0].MarkResearchComplete(techResearchTrainingPrograms);
 	Player[0].MarkResearchComplete(techOffspringEnhancement);
 	Player[0].MarkResearchComplete(techCyberneticTeleoperation);
+	Player[0].MarkResearchComplete(techLargeScaleOpticalResonators);
+	Player[0].MarkResearchComplete(techMobileWeaponsPlatform);
 
 	if (Player[0].Difficulty() != DiffHard)
 	{
-		Player[0].MarkResearchComplete(techLargeScaleOpticalResonators);
 		Player[0].MarkResearchComplete(techHighTemperatureSuperconductivity);
-		Player[0].MarkResearchComplete(techMobileWeaponsPlatform);
 		Player[0].MarkResearchComplete(techMetallogeny);
 	}
 
