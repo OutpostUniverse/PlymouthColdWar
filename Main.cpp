@@ -6,6 +6,7 @@
 
 // Forward declare all functions
 void SetDifficultyMultiplier();
+void SetStartingColonists();
 void SetStartingResearch();
 extern void ShowBriefing();
 extern void SetupObjects();
@@ -62,11 +63,10 @@ Export int InitProc()
 	Player[0].CenterViewOn(38 + X_, 45 + Y_);
 
 	SetDifficultyMultiplier();
+	SetStartingColonists();
 	SetStartingResearch();
 
 	Player[0].SetOre(2500 * saveData.diffMultiplier / 10);
-	Player[0].SetWorkers(15 * saveData.diffMultiplier / 10);
-	Player[0].SetScientists(7 * saveData.diffMultiplier / 10);
 	Player[0].SetFoodStored(1200 * saveData.diffMultiplier / 10);
 
 	Player[1].GoPlymouth();
@@ -167,6 +167,25 @@ void SetDifficultyMultiplier()
 		return; }
 	case DiffHard: {
 		saveData.diffMultiplier = 7;
+		return; }
+	}
+}
+
+void SetStartingColonists()
+{
+	switch (Player[0].Difficulty())
+	{
+	case (DiffEasy): {
+		Player[0].SetWorkers(19);
+		Player[0].SetScientists(9);
+		return; }
+	case (DiffNormal): {
+		Player[0].SetWorkers(17);
+		Player[0].SetScientists(9);
+		return; }
+	case (DiffHard): {
+		Player[0].SetWorkers(16);
+		Player[0].SetScientists(8);
 		return; }
 	}
 }
