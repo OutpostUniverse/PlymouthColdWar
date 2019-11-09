@@ -5,6 +5,8 @@
 
 
 // Forward declare all functions
+void SetDifficultyMultiplier();
+void SetStartingResearch();
 extern void ShowBriefing();
 extern void SetupObjects();
 void SetupAIMines();
@@ -57,26 +59,11 @@ Export int InitProc()
 	TethysGame::ForceMoraleGood(1);
 
 	Player[0].GoEden();
-	saveData.diffMultiplier = 7;
-	Player[0].MarkResearchComplete(techResearchTrainingPrograms);
-	Player[0].MarkResearchComplete(techOffspringEnhancement);
-	Player[0].MarkResearchComplete(techCyberneticTeleoperation);
 	Player[0].CenterViewOn(38 + X_, 45 + Y_);
 
-	if (Player[0].Difficulty() < 2)
-	{
-		saveData.diffMultiplier = 10;
-		Player[0].MarkResearchComplete(techLargeScaleOpticalResonators);
-		Player[0].MarkResearchComplete(techHighTemperatureSuperconductivity);
-		Player[0].MarkResearchComplete(techMobileWeaponsPlatform);
-		Player[0].MarkResearchComplete(techMetallogeny);
-		if (Player[0].Difficulty() < 1)
-		{
-			saveData.diffMultiplier = 13;
-			Player[0].MarkResearchComplete(techExplosiveCharges);
-			Player[0].MarkResearchComplete(techScoutClassDriveTrainRefit);
-		}
-	}
+	SetDifficultyMultiplier();
+	SetStartingResearch();
+
 	Player[0].SetOre(2500 * saveData.diffMultiplier / 10);
 	Player[0].SetWorkers(15 * saveData.diffMultiplier / 10);
 	Player[0].SetScientists(7 * saveData.diffMultiplier / 10);
@@ -166,6 +153,43 @@ Export int InitProc()
 	// Give some faster music
 	TethysGame::SetMusicPlayList(6, 3, songs);
 	return 1; // return 1 if OK; 0 on failure
+}
+
+void SetDifficultyMultiplier()
+{
+	switch (Player[0].Difficulty())
+	{
+	case DiffEasy: {
+		saveData.diffMultiplier = 13;
+		return; }
+	case DiffNormal: {
+		saveData.diffMultiplier = 10;
+		return; }
+	case DiffHard: {
+		saveData.diffMultiplier = 7;
+		return; }
+	}
+}
+
+void SetStartingResearch()
+{
+	Player[0].MarkResearchComplete(techResearchTrainingPrograms);
+	Player[0].MarkResearchComplete(techOffspringEnhancement);
+	Player[0].MarkResearchComplete(techCyberneticTeleoperation);
+
+	if (Player[0].Difficulty() != DiffHard)
+	{
+		Player[0].MarkResearchComplete(techLargeScaleOpticalResonators);
+		Player[0].MarkResearchComplete(techHighTemperatureSuperconductivity);
+		Player[0].MarkResearchComplete(techMobileWeaponsPlatform);
+		Player[0].MarkResearchComplete(techMetallogeny);
+	}
+
+	if (Player[0].Difficulty() == DiffEasy)
+	{
+		Player[0].MarkResearchComplete(techExplosiveCharges);
+		Player[0].MarkResearchComplete(techScoutClassDriveTrainRefit);
+	}
 }
 
 Export void AIProc()
