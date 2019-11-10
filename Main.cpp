@@ -2,11 +2,10 @@
 #include "Outpost2DLL/Outpost2DLL.h"
 // Include header files to make it easier to build levels
 #include "OP2Helper/OP2Helper.h"
+#include <array>
 
 
 // Forward declare all functions
-void SetDifficultyMultiplier();
-void SetStartingColonists();
 void SetStartingResearch();
 extern void ShowBriefing();
 extern void SetupObjects();
@@ -62,8 +61,14 @@ Export int InitProc()
 	Player[0].GoEden();
 	Player[0].CenterViewOn(38 + X_, 45 + Y_);
 
-	SetDifficultyMultiplier();
-	SetStartingColonists();
+	constexpr std::array<int, 3> diffMultipliers{ 13, 10, 7 };
+	constexpr std::array<int, 3> workers{ 19, 17, 16 };
+	constexpr std::array<int, 3> scientists{ 9, 9, 8 };
+
+	saveData.diffMultiplier = diffMultipliers[Player[0].Difficulty()];
+	Player[0].SetWorkers(workers[Player[0].Difficulty()]);
+	Player[0].SetScientists(scientists[Player[0].Difficulty()]);
+
 	SetStartingResearch();
 
 	Player[0].SetOre(2500 * saveData.diffMultiplier / 10);
@@ -155,40 +160,6 @@ Export int InitProc()
 	return 1; // return 1 if OK; 0 on failure
 }
 
-void SetDifficultyMultiplier()
-{
-	switch (Player[0].Difficulty())
-	{
-	case DiffEasy: {
-		saveData.diffMultiplier = 13;
-		return; }
-	case DiffNormal: {
-		saveData.diffMultiplier = 10;
-		return; }
-	case DiffHard: {
-		saveData.diffMultiplier = 7;
-		return; }
-	}
-}
-
-void SetStartingColonists()
-{
-	switch (Player[0].Difficulty())
-	{
-	case (DiffEasy): {
-		Player[0].SetWorkers(19);
-		Player[0].SetScientists(9);
-		return; }
-	case (DiffNormal): {
-		Player[0].SetWorkers(17);
-		Player[0].SetScientists(9);
-		return; }
-	case (DiffHard): {
-		Player[0].SetWorkers(16);
-		Player[0].SetScientists(8);
-		return; }
-	}
-}
 
 void SetStartingResearch()
 {
