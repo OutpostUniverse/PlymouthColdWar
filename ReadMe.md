@@ -10,6 +10,7 @@ Custom single player, colony game for Outpost 2. Last One Standing type scenario
 **Change Log**
 
 Version 1.0.2
+ - Rebalance difficulty to make normal and hard modes easier by adding colonists and starting technology
  - Allow AI to rebuild destroyed smelters and mines.
 
 Version 1.0.1
