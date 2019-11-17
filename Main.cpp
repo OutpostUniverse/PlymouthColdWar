@@ -61,6 +61,7 @@ Export int InitProc()
 	Player[0].GoEden();
 	Player[0].CenterViewOn(38 + X_, 45 + Y_);
 
+	// Index 0 = easy, 1 = normal, 2 = hard (corresponds to Player::Difficulty)
 	constexpr std::array<int, 3> diffMultipliers{ 13, 10, 7 };
 	constexpr std::array<int, 3> workers{ 19, 17, 16 };
 	constexpr std::array<int, 3> scientists{ 9, 9, 8 };
