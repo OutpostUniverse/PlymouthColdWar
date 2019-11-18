@@ -103,11 +103,6 @@ Export int InitProc()
 	saveData.aiBuildGrp.RecordVehReinforceGroup(saveData.aiDefGrp[5], 1);
 	saveData.aiBuildGrp.RecordVehReinforceGroup(saveData.aiDefGrp[6], 1);
 
-	for (int i = 0; i < 30; ++i) {
-		Unit unit;
-		TethysGame::CreateUnit(unit, map_id::mapLynx, LOCATION(50 + X_, 15 + Y_), 0, mapThorsHammer, 0);
-	}
-
 	// Turn on vehicle lights
 	PlayerVehicleEnum vehEnum(0);
 	Unit veh;
